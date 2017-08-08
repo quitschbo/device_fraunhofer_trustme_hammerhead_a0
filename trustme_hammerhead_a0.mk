@@ -30,7 +30,7 @@ PRODUCT_COPY_FILES := \
     device/fraunhofer/trustme_hammerhead_a0/mixer_paths.xml:system/etc/mixer_paths.xml
 
 # Inherit from those products. Most specific first.
-$(call inherit-product, device/fraunhofer/trustme_generic/trustme_generic_a0.mk)
+$(call inherit-product, $(SRC_TARGET_DIR)/product/aosp_base_telephony.mk)
 
 ## overwrite dalvik parameters with values for a 521MB low-ram device
 #$(call inherit-product, frameworks/native/build/phone-hdpi-512-dalvik-heap.mk)
@@ -42,12 +42,19 @@ $(call inherit-product, device/lge/hammerhead/device.mk)
 # do not use binarie from any device specicifc hammerhead-kernel.git
 TARGET_PREBUILT_KERNEL := device/fraunhofer/trustme_hammerhead_a0/dummy_kernel
 
+include device/fraunhofer/trustme_generic/trustme_generic_a0.mk
+
 # Set those variables here to overwrite the inherited values.
 PRODUCT_NAME := trustme_hammerhead_a0
 PRODUCT_DEVICE := trustme_hammerhead_a0
 PRODUCT_BRAND := Android
 PRODUCT_MODEL := trust-me Android0 for hammerhead
 PRODUCT_MANUFACTURER := fraunhofer
+
+OUT_DIR := out-a0
+
+TRUSTME_A0 := true
+
 
 #DEVICE_PACKAGE_OVERLAYS += device/fraunhofer/trustme_hammerhead_a0/overlay
 
